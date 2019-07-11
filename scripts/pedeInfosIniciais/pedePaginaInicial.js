@@ -16,7 +16,7 @@ if(aceitouSalvar === true) {
     // Type coercion // Conversão de tipo
     // paginaInicial !== NaN && paginaInicial !== 0 && paginaInicial !== null && paginaInicial !== undefined
     if(paginaInicial){        
-        const enderecoCompleto = formataEndereco(paginaInicial)    
+        const enderecoCompleto = formataEndereco(paginaInicial)
         salvar(enderecoCompleto)
     }
 }

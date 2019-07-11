@@ -29,3 +29,26 @@ function onclickSalvar() {
     funcaoSalvar()
 
 }
+// Set
+// Map
+// HashTable
+// HashMap
+const propriedadesPermantes = ['aceitouTermos', 'aceitouSalvar']
+
+// TODODepois: logica de remover no modulo de storage
+$botaoApagar.addEventListener('click', function(){
+
+
+    const listaLocalStorage = Object.keys(localStorage)
+    for(const nomeChave of listaLocalStorage) {
+        const estaNaLista = propriedadesPermantes.includes(nomeChave)
+        if (!estaNaLista){
+            localStorage.removeItem(nomeChave)
+        }
+    }
+
+    const listaSessionStorage = Object.keys(sessionStorage)
+    for(const nomeChave of listaSessionStorage) {
+        sessionStorage.removeItem(nomeChave)
+    }
+})

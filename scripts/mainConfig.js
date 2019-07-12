@@ -4,6 +4,7 @@ import * as storageAceitouSalvar from '/scripts/storage/aceitouSalvar.js'
 import * as storagePaginaInicial from '/scripts/storage/paginaInicial.js'
 
 import { Endereco } from '/scripts/endereco/Endereco.js'
+import { CakeEnderecoInvalidoError } from '/scripts/error/CLASSECakeEnderecoInvalidoError.js';
 
 $inputPaginaInicial.value = storagePaginaInicial.paginaInicial
 $inputAceitouSalvar.checked = storageAceitouSalvar.aceitouSalvar
@@ -15,11 +16,24 @@ $botaoSalvar.onclick = onclickSalvar
 // hoisting quase igual ao var
 function onclickSalvar() {
 
-    const enderecoCompleto = new Endereco($inputPaginaInicial.value)
-    
-    // depender Type Coercion
-    $inputPaginaInicial.value = enderecoCompleto
-    storagePaginaInicial.salvar(enderecoCompleto)
+    try {
+        const enderecoCompleto = new Endereco($inputPaginaInicial.value)
+        // depender Type Coercion
+        $inputPaginaInicial.value = enderecoCompleto
+        storagePaginaInicial.salvar(enderecoCompleto)
+    } catch (error) {
+        console.log('erro é um CakeEnderecoInvalidoError', error instanceof CakeEnderecoInvalidoError)
+        console.log('erro é um Error', error instanceof Error)
+        console.dir(error)
+
+        if (error instanceof CakeEnderecoInvalidoError) {
+            $inputPaginaInicial.value = ''
+            alert('Endereço inválido')
+            console.warn(error.toString())
+        } else {
+            throw error
+        }
+    }
 
     // Expressão de função
     // Function expression

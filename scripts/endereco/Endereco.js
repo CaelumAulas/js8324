@@ -1,6 +1,6 @@
 import { formataEndereco } from "/scripts/endereco/formataEndereco.js";
 
-import { CakeEnderecoInvalidoError } from '/scripts/error/CakeEnderecoInvalidoError.js'
+import { CakeEnderecoInvalidoError } from '/scripts/error/CLASSECakeEnderecoInvalidoError.js'
 
 // Função factory
 // Função fábrica
@@ -30,7 +30,7 @@ export function Endereco(endereco) {
         try {
             url = new URL(endereco)
         } catch(erro) {
-            throw new CakeEnderecoInvalidoError()
+            throw new CakeEnderecoInvalidoError(endereco)
         }
             
         const ehPaginaLocal= url.host === 'localhost:3000'
@@ -56,6 +56,14 @@ export function Endereco(endereco) {
     }
  */
 
+ /* 
+    return {
+        "urlResumida": urlResumida, 
+        "urlCompleta": urlCompleta,
+        "constructor": Endereco
+    }
+ */
+
     this.urlResumida= urlResumida 
     this.urlCompleta= urlCompleta
 
@@ -67,4 +75,5 @@ export function Endereco(endereco) {
 Endereco.prototype.toString = function () {
     return this.urlCompleta
 }
+// Monkey patching
 Object.freeze(Endereco.prototype)

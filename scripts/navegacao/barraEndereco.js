@@ -1,6 +1,6 @@
 import { carregar } from '/scripts/navegacao/carregar.js'
 import { Endereco } from '/scripts/endereco/Endereco.js'
-import { CakeEnderecoInvalidoError } from '/scripts/error/CakeEnderecoInvalidoError.js'
+import { CakeEnderecoInvalidoError } from '/scripts/error/CLASSECakeEnderecoInvalidoError.js'
 
 let objetoEndereco
 

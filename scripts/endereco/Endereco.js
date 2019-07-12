@@ -67,8 +67,6 @@ export function Endereco(endereco) {
     this.urlResumida= urlResumida 
     this.urlCompleta= urlCompleta
 
-    Object.freeze(this)
-
     // return this
 }
 
@@ -76,4 +74,3 @@ Endereco.prototype.toString = function () {
     return this.urlCompleta
 }
 // Monkey patching
-Object.freeze(Endereco.prototype)

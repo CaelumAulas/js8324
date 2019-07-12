@@ -142,7 +142,7 @@
       if (favorites.length === 0) {
         $favoritosList.innerHTML = ''
       } else {
-        const $fList = ($favoritosList.innerHTML = favorites.map(f => {
+        const $fList = (favorites.map(f => {
           const $f = toDOMElement(favoritoTemplate(f))
           $f.addEventListener('click', f.onclick)
           return $f

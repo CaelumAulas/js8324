@@ -25,7 +25,6 @@ export function adiciona(endereco){
         const endereco = lista[posicaoAtual]
         return endereco
     }
-
  }
 
  export function avancar() {

@@ -3,7 +3,7 @@
 import * as storageAceitouSalvar from '/scripts/storage/aceitouSalvar.js'
 import * as storagePaginaInicial from '/scripts/storage/paginaInicial.js'
 
-import { formataEndereco } from '/scripts/endereco/formataEndereco.js'
+import { Endereco } from '/scripts/endereco/Endereco.js'
 
 $inputPaginaInicial.value = storagePaginaInicial.paginaInicial
 $inputAceitouSalvar.checked = storageAceitouSalvar.aceitouSalvar
@@ -14,7 +14,10 @@ $botaoSalvar.onclick = onclickSalvar
 // Function declaration
 // hoisting quase igual ao var
 function onclickSalvar() {
-    const enderecoCompleto = formataEndereco($inputPaginaInicial.value)
+
+    const enderecoCompleto = new Endereco($inputPaginaInicial.value)
+    
+    // depender Type Coercion
     $inputPaginaInicial.value = enderecoCompleto
     storagePaginaInicial.salvar(enderecoCompleto)
 

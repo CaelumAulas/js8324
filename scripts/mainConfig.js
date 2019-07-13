@@ -6,6 +6,8 @@ import * as storagePaginaInicial from '/scripts/storage/paginaInicial.js'
 import { Endereco } from '/scripts/endereco/Endereco.js'
 import { CakeEnderecoInvalidoError } from '/scripts/error/CLASSECakeEnderecoInvalidoError.js';
 
+import { verificaEndereco } from '/scripts/endereco/verificaEndereco.js';
+
 $inputPaginaInicial.value = storagePaginaInicial.paginaInicial
 $inputAceitouSalvar.checked = storageAceitouSalvar.aceitouSalvar
 
@@ -14,11 +16,13 @@ $botaoSalvar.onclick = onclickSalvar
 // declaração de função
 // Function declaration
 // hoisting quase igual ao var
-function onclickSalvar() {
+async function onclickSalvar() {
 
     try {
         const enderecoCompleto = new Endereco($inputPaginaInicial.value)
-        // depender Type Coercion
+        $inputPaginaInicial.value = "... " + enderecoCompleto
+        await verificaEndereco(enderecoCompleto)
+
         $inputPaginaInicial.value = enderecoCompleto
         storagePaginaInicial.salvar(enderecoCompleto)
     } catch (error) {
@@ -27,7 +31,7 @@ function onclickSalvar() {
         console.dir(error)
 
         if (error instanceof CakeEnderecoInvalidoError) {
-            $inputPaginaInicial.value = ''
+            $inputPaginaInicial.value = storagePaginaInicial.paginaInicial || ''
             alert('Endereço inválido')
             console.warn(error.toString())
         } else {
